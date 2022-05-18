@@ -1,0 +1,22 @@
+server:
+  port: 7777
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8061/eureka/
+      
+logging:
+  pattern: 
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+    
+turbine:
+   aggregator:
+      clusterConfig: department-service
+   appConfig: department-service
+
+management:
+   endpoints:
+      web:
+         exposure:
+            include: clusters  

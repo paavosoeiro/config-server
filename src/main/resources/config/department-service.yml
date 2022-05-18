@@ -1,0 +1,36 @@
+server:
+  port: 8091
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8061/eureka/
+      
+logging:
+  pattern: 
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+    
+ribbon:
+  eureka:
+    enabled: true
+    
+management:
+   endpoints:
+      web:
+         exposure:
+            include: hystrix.stream, health
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        enabled: true
+      execution:
+        isolation:
+          thread:
+            timeoutInMillisecounds: 210000
+        timeout:
+          enabled: true
+          
+feign:
+   hystrix:
+      enabled: true
